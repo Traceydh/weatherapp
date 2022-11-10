@@ -20,14 +20,17 @@ function fetchWeatherData() {
         cityDisplay.innerText = response.name;
         //description 
         let weatherDescription = document.getElementById('description');
-        weatherDescription.innerText = response.weather[0].description;
+        let descriptionData =  response.weather[0].description;
+        let desriptionDataEdit = descriptionData.charAt(0).toUpperCase() + descriptionData.slice(1);
+        weatherDescription.innerText = desriptionDataEdit;
         //main temperature 
         let temp = document.getElementById('temperature');
         temp.innerText = response.main.temp + '°C';
         //weather icon 
         let image = document.getElementById('image');
-        let icon = response.weather[0].icon; 
-        image.src = `http://openweathermap.org/img/wn/${icon}@2x.png`
+        let iconDay = response.weather[0].icon;
+        let iconNight = iconDay.slice(0,-1) + 'n';
+        image.src = `http://openweathermap.org/img/wn/${iconNight}@2x.png`
         
         console.log(response)
     })
