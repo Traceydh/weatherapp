@@ -1,15 +1,42 @@
 let city = 'chiang mai'
 const KEY = '07b455e1971cd1f6a070f7d09f4e2d4c'
+getUserLocation()
+
+//get location 
+function getUserLocation() {
+    const successCallback = (position) => {
+        let lat = position.coords.latitude;
+        let lon = position.coords.longitude;
+        console.log(position, lat, lon);
+        fetch(`http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=1&appid=${KEY}`)
+            .then(response => {
+                return response.json();
+            })
+            .then(response => {
+                console.log(response, response[0].name);
+                fetchWeatherData(response[0].name);
+            })
+      };
+      
+      const errorCallback = (error) => {
+        alert(error);
+      };
+      
+      navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+}
+//retrieve API for current location data 
+//place into divs 
+//display 
 
 const searchButton = document.querySelector('button');
 searchButton.addEventListener('click', () => {
     let input = document.getElementById('input').value;
     city = input;
-    fetchWeatherData()
+    fetchWeatherData(city);
 })
 
 
-function fetchWeatherData() {
+function fetchWeatherData(city) {
     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${KEY}&units=metric`)
     .then(response => {
         return response.json();
