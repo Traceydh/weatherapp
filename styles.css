@@ -3,4 +3,9 @@
     box-sizing: border-box;
 }
 
-/*tablets width 801*/
+body {
+    height: 100vh;
+    background-image: url("images/background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
