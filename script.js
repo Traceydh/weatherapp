@@ -15,13 +15,11 @@ function getUserLocation() {
     const successCallback = (position) => {
         let lat = position.coords.latitude;
         let lon = position.coords.longitude;
-        console.log(position, lat, lon);
         fetch(`http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=1&appid=${KEY}`)
             .then(response => {
                 return response.json();
             })
             .then(response => {
-                console.log(response, response[0].name);
                 fetchWeatherData(response[0].name);
             })
       };
@@ -32,9 +30,6 @@ function getUserLocation() {
       
       navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
 }
-//retrieve API for current location data 
-//place into divs 
-//display 
 
 const searchButton = document.querySelector('button');
 searchButton.addEventListener('click', () => {
