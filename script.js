@@ -62,8 +62,44 @@ function fetchWeatherData(city) {
         let iconDay = response.weather[0].icon;
         let iconNight = iconDay.slice(0,-1) + 'n';
         image.src = `http://openweathermap.org/img/wn/${iconNight}@2x.png`
+
+        //humidity
+        let humidity = document.getElementById('humidity');
+        let humidityData = response.main.humidity;
+        humidity.innerText = humidityData + '%';
+        //temp min and max 
+        let min = document.getElementById('min');
+        let max = document.getElementById('max');
+        let minData = response.main.temp_min;
+        let maxData = response.main.temp_max;
+        min.innerText = minData + '°C';
+        max.innerText = maxData + '°C';
+
+        //sunrise and sunset 
+        let sunrise = document.getElementById('sunrise');
+        let sunset = document.getElementById('sunset');
         
-        console.log(response)
+        let sunriseData = response.sys.sunrise;
+        let sunsetData = response.sys.sunset;
+
+        let sunriseFormat = new Date(sunriseData * 1000);
+        let sunsetFormat = new Date(sunsetData * 1000);
+        // Hours part from the timestamp
+        let sunriseHours = sunriseFormat.getHours();
+        let sunsetHours = sunsetFormat.getHours();
+        // Minutes part from the timestamp
+        let sunriseMinutes = "0" + sunriseFormat.getMinutes();
+        let sunsetMinutes = "0" + sunsetFormat.getMinutes();
+
+        // Will display time in 10:30:23 format
+        let sunriseFormattedTime = sunriseHours-4 + ':' + sunriseMinutes.substr(-2)
+        let sunsetFormattedTime = sunsetHours-4 + ':' + sunsetMinutes.substr(-2)
+
+        sunrise.innerText = sunriseFormattedTime;
+        sunset.innerText = sunsetFormattedTime;
+
+        console.log(sunriseFormattedTime, sunsetFormattedTime);
+        
     })
 }
 
