@@ -5,7 +5,7 @@ getUserLocation()
 getUserDate()
 
 function getUserDate() {
-    const dateData = new Date().toLocaleDateString('en-us', { day: 'numeric' , weekday:"long", year:"numeric", month:"short"});
+    const dateData = new Date().toDateString();
     let date = document.getElementById('date')
     date.innerText = dateData;
 }
