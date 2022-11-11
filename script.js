@@ -1,6 +1,14 @@
 let city = 'chiang mai'
 const KEY = '07b455e1971cd1f6a070f7d09f4e2d4c'
+
 getUserLocation()
+getUserDate()
+
+function getUserDate() {
+    const dateData = new Date().toLocaleDateString('en-us', { day: 'numeric' , weekday:"long", year:"numeric", month:"short"});
+    let date = document.getElementById('date')
+    date.innerText = dateData;
+}
 
 //get location 
 function getUserLocation() {
@@ -48,7 +56,8 @@ function fetchWeatherData(city) {
         //description 
         let weatherDescription = document.getElementById('description');
         let descriptionData =  response.weather[0].description;
-        let desriptionDataEdit = descriptionData.charAt(0).toUpperCase() + descriptionData.slice(1);
+        let feelsData = response.main.feels_like;
+        let desriptionDataEdit = descriptionData.charAt(0).toUpperCase() + descriptionData.slice(1) + `. Feels like ${feelsData}°C`;
         weatherDescription.innerText = desriptionDataEdit;
         //main temperature 
         let temp = document.getElementById('temperature');
