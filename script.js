@@ -36,12 +36,15 @@ searchButton.addEventListener('click', () => {
     let input = document.getElementById('input').value;
     city = input;
     fetchWeatherData(city);
+    input = '';
 })
 
 
 function fetchWeatherData(city) {
     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${KEY}&units=metric`)
     .then(response => {
+        let error = document.querySelector(".error");
+        error.remove();
         return response.json();
     })
     .then(response => {
@@ -92,14 +95,49 @@ function fetchWeatherData(city) {
         let sunsetMinutes = "0" + sunsetFormat.getMinutes();
 
         // Will display time in 10:30:23 format
-        let sunriseFormattedTime = sunriseHours-4 + ':' + sunriseMinutes.substr(-2)
-        let sunsetFormattedTime = sunsetHours-4 + ':' + sunsetMinutes.substr(-2)
+        let sunriseFormattedTime = sunriseHours + ':' + sunriseMinutes.substr(-2)
+        let sunsetFormattedTime = sunsetHours + ':' + sunsetMinutes.substr(-2)
 
         sunrise.innerText = sunriseFormattedTime;
         sunset.innerText = sunsetFormattedTime;
+    })
 
-        console.log(sunriseFormattedTime, sunsetFormattedTime);
-        
+    .catch(error => {
+        //description 
+        let weatherDescription = document.getElementById('description');
+        weatherDescription.innerText = '';
+        //main temperature 
+        let temp = document.getElementById('temperature');
+        temp.innerText = '°C';
+        //weather icon 
+        let image = document.getElementById('image');
+        image.src = `#`;
+
+        //humidity
+        let humidity = document.getElementById('humidity');
+        humidity.innerText ='%';
+        //temp min and max 
+        let min = document.getElementById('min');
+        let max = document.getElementById('max');
+        min.innerText = '°C';
+        max.innerText = '°C';
+
+        //sunrise and sunset 
+        let sunrise = document.getElementById('sunrise');
+        let sunset = document.getElementById('sunset');
+        sunrise.innerText ='';
+        sunset.innerText = '';
+
+        //city 
+        let cityDisplay = document.getElementById('city');
+        cityDisplay.innerText = 'unknown city';
+
+        const errorDisplayMessage = document.createElement("div");
+        errorDisplayMessage.classList.add("error");
+        errorDisplayMessage.innerText = 'Please enter another location';
+
+        let button = document.querySelector('.add-error');
+        button.append(errorDisplayMessage);
     })
 }
 

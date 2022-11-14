@@ -22,7 +22,7 @@
     </head>
 
     <body>
-        <section>
+        <section class="today">
             <div class="main">
                 <div>
                     <div class='big' id="city"></div>
@@ -34,10 +34,12 @@
                 </div>
                 <div id="description"></div>
                 <form>
-                    <input type="text" id="input" name="input" placeholder="search city">
-                    <button type="button"><img class="icon" src="images/search.png"> </button>
+                    <input type="text" id="input" name="input" onfocus="this.value=''" placeholder="search city">
+                    <button type="button"><img class="icon" src="images/search.png"></button>
+                    <div class="add-error"></div>
                 </form>
             </div>
+
             <div class="secondary">
                 <div>
                     <div class="block">
@@ -63,7 +65,9 @@
                 </div>
             </div>
         </section>
+
         <section></section>
+
         <footer></footer>
     </body>
 </html>
