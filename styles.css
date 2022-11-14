@@ -5,9 +5,13 @@
 
 body {
     height: 100vh;
+    width: 100%;
     background-image: url("images/background.jpg");
     background-repeat: no-repeat;
     background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+    position: relative;
 }
 
 .big {
@@ -85,4 +89,40 @@ button {
     font-style: italic;
     font-size: small;
     margin-top: 0.5rem;
+}
+
+/*Weekly Forecast*/
+.week-forecast {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.day {
+    display: flex;
+    gap: 2rem;
+    width: 100%;
+    margin-top: 1rem;
+    justify-content: center;
+    align-items: center;
+
+    border: 2px solid pink;
+}
+
+.week {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+@media (min-width: 700px) {
+    .day {
+        flex-direction: column;
+        gap: 0.5rem;
+        margin-top: 1rem;
+        width: auto;
+    }
+    .week {
+        gap: 0.5rem;
+    }
 }
