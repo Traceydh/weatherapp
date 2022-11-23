@@ -36,6 +36,7 @@ searchButton.addEventListener('click', () => {
     let input = document.getElementById('input').value;
     city = input;
     fetchWeatherData(city);
+    fetchWeekWeather(city)
     input = '';
 })
 
@@ -141,3 +142,15 @@ function fetchWeatherData(city) {
     })
 }
 
+function fetchWeekWeather(city) {
+    fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${KEY}&units=metric`)
+    .then(response => {
+        return response.json();
+    })
+    .then(response => {
+        console.log(response)
+    })
+    .catch(error => {
+        console.log(error)
+    }) 
+}
