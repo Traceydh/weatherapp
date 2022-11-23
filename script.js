@@ -148,6 +148,19 @@ function fetchWeekWeather(city) {
         return response.json();
     })
     .then(response => {
+        // weekday for next 5 days, always 0 index =today 12pm 
+        for (let i = 8; i < 40; i += 8) {
+            console.log(response.list[i].dt_txt)
+            // image 
+            console.log(response.list[i].weather[0].icon)
+            // min max temp
+            console.log(response.list[i].main.temp_min)
+            console.log(response.list[i].main.temp_max)
+            // description
+            console.log(response.list[i].weather[0].description)
+        }
+        console.log(response.list[39].dt_txt)
+ 
         console.log(response)
     })
     .catch(error => {
