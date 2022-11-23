@@ -158,8 +158,21 @@ function fetchWeekWeather(city) {
             console.log(response.list[i].main.temp_max)
             // description
             console.log(response.list[i].weather[0].description)
+
+            const weekday = document.createElement('div');
+            weekday.classList.add('day');
+            const weekday_name = document.createElement('div');
+            const week_img = document.createElement('img');
+            const week_mintemp = document.createElement('span');
+            const week_maxtemp = document.createElement('span');
+            const description = document.createElement('span');
+    
+            const container = document.getElementById("weekday-container")
+            container.append(weekday);
+            weekday.append(weekday_name, week_img, week_mintemp, week_maxtemp, description);
         }
-        console.log(response.list[39].dt_txt)
+
+
  
         console.log(response)
     })
