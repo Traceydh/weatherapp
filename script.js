@@ -148,7 +148,11 @@ function fetchWeekWeather(city) {
         return response.json();
     })
     .then(response => {
-        console.log(response)
+        let weeklyForecastContainer = document.getElementById("weekday-container");
+        while (weeklyForecastContainer.hasChildNodes()) {
+            weeklyForecastContainer.removeChild(weeklyForecastContainer.firstChild)
+        }
+
         // weekday for next 5 days, always 0 index =today 12pm 
         for (let i = 8; i < 40; i += 8) {
             makeWeeklyForecastCard(response.list[i]);
