@@ -153,9 +153,8 @@ function fetchWeekWeather(city) {
             console.log(response.list[i].dt_txt)
             // image 
             console.log(response.list[i].weather[0].icon)
-            // min max temp
-            console.log(response.list[i].main.temp_min)
-            console.log(response.list[i].main.temp_max)
+            // temp
+            console.log(response.list[i].main.temp)
             // description
             console.log(response.list[i].weather[0].description)
 
@@ -163,13 +162,21 @@ function fetchWeekWeather(city) {
             weekday.classList.add('day');
             const weekday_name = document.createElement('div');
             const week_img = document.createElement('img');
-            const week_mintemp = document.createElement('span');
-            const week_maxtemp = document.createElement('span');
+            const week_temp = document.createElement('span');
             const description = document.createElement('span');
+
+            const value = response.list[i].dt;
+            weekday_name.innerText = new Date(value * 1000).toLocaleDateString("en", {
+            weekday: "long",});
+            let iconDay = response.list[i].weather[0].icon;
+            let iconNight = iconDay.slice(0,-1) + 'n';
+            week_img.src = `http://openweathermap.org/img/wn/${iconNight}@2x.png`
+            week_temp.innerText = response.list[i].main.temp + '°C';
+            description.innerText = response.list[i].weather[0].description;
     
             const container = document.getElementById("weekday-container")
             container.append(weekday);
-            weekday.append(weekday_name, week_img, week_mintemp, week_maxtemp, description);
+            weekday.append(weekday_name, week_img, week_temp, description);
         }
 
 
