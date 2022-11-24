@@ -22,58 +22,58 @@
     </head>
 
     <body>
-        <section class="today">
-            <div class="main">
-                <div>
-                    <div class='big' id="city"></div>
-                    <span class="small" id="date"></span>
+        <div class="main-container">
+            <section class="today">
+                <div class="main">
+                    <div>
+                        <div class='big' id="city"></div>
+                        <span class="small" id="date"></span>
+                    </div>
+                    <div class="weather-main">
+                        <img src="#" id="image">
+                        <span class='big' id="temperature"></span>
+                    </div>
+                    <div id="description"></div>
+                    <form>
+                        <input type="text" id="input" name="input" onfocus="this.value=''" placeholder="search city">
+                        <button type="button"><img class="icon" src="images/search.png"></button>
+                        <div class="add-error"></div>
+                    </form>
                 </div>
-                <div class="weather-main">
-                    <img src="#" id="image">
-                    <span class='big' id="temperature"></span>
-                </div>
-                <div id="description"></div>
-                <form>
-                    <input type="text" id="input" name="input" onfocus="this.value=''" placeholder="search city">
-                    <button type="button"><img class="icon" src="images/search.png"></button>
-                    <div class="add-error"></div>
-                </form>
-            </div>
-
-            <div class="secondary">
-                <div>
+    
+                <div class="secondary">
+                    <div>
+                        <div class="block">
+                            <img class="icon-large" src="images/humidity.png">
+                            <span>Humidity</span>
+                            <span id="humidity"></span>
+                        </div> 
+                    </div>
                     <div class="block">
-                        <img class="icon-large" src="images/humidity.png">
-                        <span>Humidity</span>
-                        <span id="humidity"></span>
-                    </div> 
+                        <img class="icon-large" src="images/thermometer.png">
+                        <span>temp</span>
+                        <span>min: <span id="min"></span> max: <span id="max"></span></span>
+                    </div>
+                    <div class="block">
+                        <img class="icon-large" src="images/sunrise.png">
+                        <span>Sunrise</span>
+                        <span id="sunrise"></span>
+                    </div>
+                    <div class="block">
+                        <img class="icon-large" src="images/sunset.png">
+                        <span>Sunset</span>
+                        <span id=sunset></span>
+                    </div>
                 </div>
-                <div class="block">
-                    <img class="icon-large" src="images/thermometer.png">
-                    <span>temp</span>
-                    <span>min: <span id="min"></span> max: <span id="max"></span></span>
+            </section>
+            <section>
+                <div class="week-forecast">
+                    <div class="big">Weekly Forecast</div>
+                    <div class="week" id="weekday-container">
+                    </div>
                 </div>
-                <div class="block">
-                    <img class="icon-large" src="images/sunrise.png">
-                    <span>Sunrise</span>
-                    <span id="sunrise"></span>
-                </div>
-                <div class="block">
-                    <img class="icon-large" src="images/sunset.png">
-                    <span>Sunset</span>
-                    <span id=sunset></span>
-                </div>
-            </div>
-
-            <div class="week-forecast">
-                <div class="big">Weekly Forecast</div>
-                <div class="week" id="weekday-container">
-
-                </div>
-            </div>
-
-        </section>
-
+            </section>
+        </div>
         <footer></footer>
     </body>
 </html>

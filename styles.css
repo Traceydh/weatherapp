@@ -97,6 +97,8 @@ button {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    margin-top: 10vh;
 }
 
 .day {
@@ -122,7 +124,7 @@ button {
         flex-direction: row;
         flex-wrap: wrap;
         width: 100vw;
-        max-width: 1000px;
+        max-width: 1300px;
         justify-content: space-around;
     }
 }

@@ -148,42 +148,35 @@ function fetchWeekWeather(city) {
         return response.json();
     })
     .then(response => {
+        console.log(response)
         // weekday for next 5 days, always 0 index =today 12pm 
         for (let i = 8; i < 40; i += 8) {
-            console.log(response.list[i].dt_txt)
-            // image 
-            console.log(response.list[i].weather[0].icon)
-            // temp
-            console.log(response.list[i].main.temp)
-            // description
-            console.log(response.list[i].weather[0].description)
-
-            const weekday = document.createElement('div');
-            weekday.classList.add('day');
-            const weekday_name = document.createElement('div');
-            const week_img = document.createElement('img');
-            const week_temp = document.createElement('span');
-            const description = document.createElement('span');
-
-            const value = response.list[i].dt;
-            weekday_name.innerText = new Date(value * 1000).toLocaleDateString("en", {
-            weekday: "long",});
-            let iconDay = response.list[i].weather[0].icon;
-            let iconNight = iconDay.slice(0,-1) + 'n';
-            week_img.src = `http://openweathermap.org/img/wn/${iconNight}@2x.png`
-            week_temp.innerText = response.list[i].main.temp + '°C';
-            description.innerText = response.list[i].weather[0].description;
-    
-            const container = document.getElementById("weekday-container")
-            container.append(weekday);
-            weekday.append(weekday_name, week_img, week_temp, description);
+            makeWeeklyForecastCard(response.list[i]);
         }
-
-
- 
-        console.log(response)
+        makeWeeklyForecastCard(response.list[39]);
     })
     .catch(error => {
         console.log(error)
     }) 
+}
+
+function makeWeeklyForecastCard(data) {
+    const weekday = document.createElement('div');
+    weekday.classList.add('day');
+    const weekday_name = document.createElement('div');
+    const week_img = document.createElement('img');
+    const week_temp = document.createElement('span');
+    const description = document.createElement('span');
+
+    weekday_name.innerText = new Date(data.dt * 1000).toLocaleDateString("en", {
+    weekday: "long",});
+    let iconDay = data.weather[0].icon;
+    let iconNight = iconDay.slice(0,-1) + 'n';
+    week_img.src = `http://openweathermap.org/img/wn/${iconNight}@2x.png`
+    week_temp.innerText = data.main.temp + '°C';
+    description.innerText = data.weather[0].description;
+
+    const container = document.getElementById("weekday-container")
+    container.append(weekday);
+    weekday.append(weekday_name, week_img, week_temp, description);
 }
