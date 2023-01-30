@@ -1,4 +1,3 @@
-let city = 'chiang mai'
 const KEY = '07b455e1971cd1f6a070f7d09f4e2d4c'
 
 getUserLocation()
@@ -21,7 +20,7 @@ function getUserLocation() {
             })
             .then(response => {
                 fetchWeatherData(response[0].name);
-                fetchWeekWeather(response[0].name)
+                fetchWeekWeather(response[0].name);
             })
       };
       
@@ -33,12 +32,20 @@ function getUserLocation() {
 }
 
 const searchButton = document.querySelector('button');
+
 searchButton.addEventListener('click', () => {
-    let input = document.getElementById('input').value;
-    city = input;
+    let city = document.getElementById('input').value;
     fetchWeatherData(city);
     fetchWeekWeather(city)
-    input = '';
+    city = '';
+})
+
+document.getElementById('input').addEventListener("keyup", function(event) {
+    console.log(event.keyCode)
+    if (event.keyCode === 13) {
+        event.preventDefault();
+        searchButton.click();
+    }
 })
 
 
@@ -152,7 +159,6 @@ function fetchWeekWeather(city) {
         return response.json();
     })
     .then(response => {
-        console.log(response)
         let weeklyForecastContainer = document.getElementById("weekday-container");
         while (weeklyForecastContainer.hasChildNodes()) {
             weeklyForecastContainer.removeChild(weeklyForecastContainer.firstChild)
