@@ -21,6 +21,7 @@ function getUserLocation() {
             })
             .then(response => {
                 fetchWeatherData(response[0].name);
+                fetchWeekWeather(response[0].name)
             })
       };
       
@@ -42,7 +43,6 @@ searchButton.addEventListener('click', () => {
 
 
 function fetchWeatherData(city) {
-    console.log(city)
     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${KEY}&units=metric`)
     .then(response => {
         let addErrorContainer = document.querySelector(".add-error")
@@ -53,7 +53,6 @@ function fetchWeatherData(city) {
         return response.json();
     })
     .then(response => {
-        console.log(response)
         //city 
         let cityDisplay = document.getElementById('city');
         cityDisplay.innerText = response.name;
