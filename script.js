@@ -42,13 +42,18 @@ searchButton.addEventListener('click', () => {
 
 
 function fetchWeatherData(city) {
+    console.log(city)
     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${KEY}&units=metric`)
     .then(response => {
+        let addErrorContainer = document.querySelector(".add-error")
         let error = document.querySelector(".error");
-        error.remove();
+        if (addErrorContainer.children.length > 0) {
+            error.remove();
+        }
         return response.json();
     })
     .then(response => {
+        console.log(response)
         //city 
         let cityDisplay = document.getElementById('city');
         cityDisplay.innerText = response.name;
@@ -148,6 +153,7 @@ function fetchWeekWeather(city) {
         return response.json();
     })
     .then(response => {
+        console.log(response)
         let weeklyForecastContainer = document.getElementById("weekday-container");
         while (weeklyForecastContainer.hasChildNodes()) {
             weeklyForecastContainer.removeChild(weeklyForecastContainer.firstChild)
