@@ -40,10 +40,9 @@ searchButton.addEventListener('click', () => {
     city = '';
 })
 
-document.getElementById('input').addEventListener("keyup", function(event) {
-    console.log(event.keyCode)
-    if (event.keyCode === 13) {
-        event.preventDefault();
+document.getElementById('input').addEventListener("keyup", (e) => {
+    if (e.keyCode === 13) {
+        e.preventDefault();
         searchButton.click();
     }
 })
