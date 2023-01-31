@@ -1,3 +1,4 @@
+//Uses the fetch API to return promises 
 const KEY = '07b455e1971cd1f6a070f7d09f4e2d4c'
 
 getUserLocation()
